@@ -14,8 +14,14 @@
       tools:targetApi="31">
     <activity
         android:name=".BasicLayoutActivity"
+        android:exported="false"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.Ngompos" />
+
+    <activity
+        android:name=".LazyColumnActivity"
         android:exported="true"
-        android:label="@string/title_activity_basic_layout"
+        android:label="@string/app_name"
         android:theme="@style/Theme.Ngompos">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -31,17 +37,7 @@
         android:name=".MainActivity"
         android:exported="true"
         android:label="@string/app_name"
-        android:theme="@style/Theme.Ngompos">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-
-      <meta-data
-          android:name="android.app.lib_name"
-          android:value="" />
-    </activity>
+        android:theme="@style/Theme.Ngompos" />
   </application>
 
 </manifest>
