@@ -3,17 +3,29 @@ package com.mimuslabs.ngompos
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.Divider
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.AccountBox
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.mimuslabs.ngompos.entity.SettingMenu
 import com.mimuslabs.ngompos.ui.theme.NgomposTheme
 
 class LazyColumnActivity : ComponentActivity() {
@@ -21,41 +33,37 @@ class LazyColumnActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
     setContent {
       NgomposTheme {
+        ContentCompose()
       }
-      ContentCompose()
     }
   }
 }
 
 @Composable
 fun ContentCompose() {
-  val data = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8")
+  val data = listOf(
+    SettingMenu(Icons.Outlined.AccountBox, "Your channel"),
+    SettingMenu(Icons.Outlined.Email, "Turn on Incognito"),
+    SettingMenu(Icons.Outlined.Add, "Add account"),
+    SettingMenu(Icons.Outlined.Add, "Get YouTube Premium"),
+    SettingMenu(Icons.Outlined.Settings, "Purchase and memberships"),
+    SettingMenu(Icons.Outlined.Search, "Time watched"),
+    SettingMenu(Icons.Outlined.Star, "Your data in YouTube"),
+    SettingMenu(Icons.Outlined.ShoppingCart, "Settings"),
+    SettingMenu(Icons.Outlined.Email, "Help & feedback"),
+    SettingMenu(Icons.Outlined.Settings, "YouTube Studio"),
+    SettingMenu(Icons.Outlined.Settings, "YouTube Music"),
+    SettingMenu(Icons.Outlined.Settings, "YouTube Kids")
+  )
 
   LazyColumn {
-    item {
-      Text(
-        text = "Ini Header",
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(16.dp),
-        fontSize = 20.sp,
-        fontWeight = FontWeight.Bold
-      )
-    }
-    item {
-      Text(
-        text = "item 0", modifier = Modifier
-          .fillMaxWidth()
-          .padding(start = 16.dp, end = 16.dp, bottom = 16.dp), fontSize = 16.sp
-      )
-    }
 
-    items(data) { item ->
-      Text(
-        text = item, modifier = Modifier
-          .fillMaxWidth()
-          .padding(start = 16.dp, end = 16.dp, bottom = 16.dp), fontSize = 16.sp
-      )
+    itemsIndexed(data) { index, item ->
+      SettingItem(modifier = Modifier.padding(start = 20.dp, end = 20.dp), settingMenu = item)
+
+      if (index == 2 || index == 6 || index == 8) {
+        Divider(modifier = Modifier.fillMaxWidth(), thickness = 1.dp, color = Color.Black)
+      }
     }
   }
 }
@@ -63,5 +71,26 @@ fun ContentCompose() {
 @Preview(showBackground = true, widthDp = 320)
 @Composable
 fun PrevContentCompose() {
+  /*SettingItem(
+    modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+    settingMenu = SettingMenu(Icons.Default.Star, "Your channel")
+  )*/
   ContentCompose()
+}
+
+@Composable
+fun SettingItem(modifier: Modifier = Modifier, settingMenu: SettingMenu) {
+  Row(modifier = modifier.fillMaxWidth()) {
+    Icon(
+      imageVector = settingMenu.imageVector,
+      contentDescription = "Click button setting",
+      modifier = Modifier.padding(end = 16.dp, top = 16.dp, bottom = 16.dp)
+    )
+    Text(
+      text = settingMenu.title, color = Color.Black, fontSize = 16.sp,
+      modifier = Modifier
+        .fillMaxWidth()
+        .padding(top = 16.dp, bottom = 16.dp)
+    )
+  }
 }
