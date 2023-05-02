@@ -1,4 +1,7 @@
 <resources>
   <string name="app_name">Ngompos</string>
   <string name="title_activity_basic_layout">BasicLayoutActivity</string>
+  <string name="title_basic_layout">Basic Layout</string>
+  <string name="subtitle_basic_layout">Mengenal basic layout</string>
+  <string name="text_compose_basic">Compose Basic</string>
 </resources>
