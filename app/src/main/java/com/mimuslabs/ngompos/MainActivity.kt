@@ -27,6 +27,9 @@ import com.mimuslabs.ngompos.R.string
 import com.mimuslabs.ngompos.entity.MenuItem
 import com.mimuslabs.ngompos.ui.theme.NgomposTheme
 
+const val MENU_ID_BASIC_LAYOUT = 1
+const val MENU_ID_LAZY_COLUMN = 2
+
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -40,9 +43,14 @@ class MainActivity : ComponentActivity() {
   }
 
   private fun handleMenuClick(item: MenuItem) {
-    if (item.menuId == 1) {
-      startActivity(Intent(this, BasicLayoutActivity::class.java))
+    val intent = when (item.menuId) {
+      MENU_ID_BASIC_LAYOUT -> Intent(this, BasicLayoutActivity::class.java)
+      else -> {
+        Intent(this, LazyColumnActivity::class.java)
+      }
     }
+
+    startActivity(intent)
   }
 }
 
@@ -50,34 +58,14 @@ class MainActivity : ComponentActivity() {
 fun ContentMenu(onItemClick: (MenuItem) -> Unit) {
   val listMenu = listOf(
     MenuItem(
-      1,
+      MENU_ID_BASIC_LAYOUT,
       stringResource(string.title_basic_layout),
       stringResource(string.subtitle_basic_layout)
     ),
     MenuItem(
-      1,
-      stringResource(string.title_basic_layout),
-      stringResource(string.subtitle_basic_layout)
-    ),
-    MenuItem(
-      1,
-      stringResource(string.title_basic_layout),
-      stringResource(string.subtitle_basic_layout)
-    ),
-    MenuItem(
-      1,
-      stringResource(string.title_basic_layout),
-      stringResource(string.subtitle_basic_layout)
-    ),
-    MenuItem(
-      1,
-      stringResource(string.title_basic_layout),
-      stringResource(string.subtitle_basic_layout)
-    ),
-    MenuItem(
-      1,
-      stringResource(string.title_basic_layout),
-      stringResource(string.subtitle_basic_layout)
+      MENU_ID_LAZY_COLUMN,
+      stringResource(string.title_lazycolumn),
+      stringResource(string.subtitle_lazycolumn)
     )
   )
   LazyColumn(modifier = Modifier.fillMaxSize()) {
