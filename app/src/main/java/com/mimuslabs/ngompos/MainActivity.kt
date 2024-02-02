@@ -29,6 +29,7 @@ import com.mimuslabs.ngompos.ui.theme.NgomposTheme
 
 const val MENU_ID_BASIC_LAYOUT = 1
 const val MENU_ID_LAZY_COLUMN = 2
+const val MENU_ID_CONSTRAIN_LAYOUT = 3
 
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,6 +46,7 @@ class MainActivity : ComponentActivity() {
   private fun handleMenuClick(item: MenuItem) {
     val intent = when (item.menuId) {
       MENU_ID_BASIC_LAYOUT -> Intent(this, BasicLayoutActivity::class.java)
+      MENU_ID_CONSTRAIN_LAYOUT -> Intent(this, ConstraintLayoutActivity::class.java)
       else -> {
         Intent(this, LazyColumnActivity::class.java)
       }
@@ -66,6 +68,11 @@ fun ContentMenu(onItemClick: (MenuItem) -> Unit) {
       MENU_ID_LAZY_COLUMN,
       stringResource(string.title_lazycolumn),
       stringResource(string.subtitle_lazycolumn)
+    ),
+    MenuItem(
+      MENU_ID_CONSTRAIN_LAYOUT,
+      stringResource(string.title_constraint_layout),
+      stringResource(string.subtitle_mengenal_constraint_layout)
     )
   )
   LazyColumn(modifier = Modifier.fillMaxSize()) {

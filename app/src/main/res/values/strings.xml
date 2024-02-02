@@ -5,4 +5,6 @@
   <string name="text_compose_basic">Basic Compose</string>
   <string name="title_lazycolumn">LazyColumn</string>
   <string name="subtitle_lazycolumn">Working with lazy column</string>
+  <string name="title_constraint_layout">Constraint Layout</string>
+  <string name="subtitle_mengenal_constraint_layout">Mengenal constraint layout</string>
 </resources>
